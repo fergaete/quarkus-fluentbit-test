@@ -1,0 +1,10 @@
+version: "3.5"
+services:
+    fluentbit:
+        image: cr.fluentbit.io/fluent/fluent-bit
+        ports:
+          - "8888:8888"
+          - "24224:24224"
+          - "24224:24224/udp"
+        volumes:
+          - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf

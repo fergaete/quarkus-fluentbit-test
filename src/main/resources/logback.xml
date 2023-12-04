@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="fluent-bit" class="ch.qos.logback.more.appenders.DataFluentAppender">
+        <tag>${quarkus.application.name}-${ENVIRONMENT_AMBIENTE}</tag> <!-- Etiqueta que identifica aplicacion -->
+        <remoteHost>${ENVIRONMENT_REMOTE_LOG_HOST}</remoteHost> <!-- Dirección IP de Fluent Bit -->
+        <port>${ENVIRONMENT_REMOTE_LOG_PORT}</port> <!-- Puerto de Fluent Bit -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <charset>UTF-8</charset> <!-- Charset para mensajes con caracteres especiales para Fluent Bit -->
+            <pattern>%date %level [%thread] [ApplicationName:${quarkus.application.name}] [%C:%line] [Method:%M] %logger{10} %msg%n</pattern> <!-- Patter log para Fluent Bit -->
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="fluent-bit" />
+    </root>
+</configuration>
